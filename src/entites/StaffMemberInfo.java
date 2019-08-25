@@ -1,17 +1,17 @@
 package entites;
 
 public class StaffMemberInfo {
-    private int number;
+    private String number;
     private String date;
     private String fullName;
 
-    public StaffMemberInfo(int number, String date, String fullName) {
+    public StaffMemberInfo(String number, String date, String fullName) {
         this.number = number;
         this.date = date;
         this.fullName = fullName;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
@@ -21,5 +21,14 @@ public class StaffMemberInfo {
 
     public String getFullName() {
         return fullName;
+    }
+
+    @Override
+    public String toString() {
+        return "StaffMemberInfo{" +
+                "number='" + number + '\'' +
+                ", date='" + date + '\'' +
+                ", fullName='" + fullName + '\'' +
+                '}';
     }
 }
