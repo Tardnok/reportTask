@@ -1,9 +1,7 @@
 import entites.ParametersInfo;
 import entites.StaffMemberInfo;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,12 +9,29 @@ import static java.util.Arrays.asList;
 
 public class Main {
     private static String filePath = "E:\\Work\\reportTask\\src\\data\\source-data.txt";
+    private static String fileReport = "E:\\Work\\reportTask\\src\\data\\report.txt";
     public static void main(String[] args) {
         List<StaffMemberInfo> staff = csvParser(filePath);
         ParametersInfo info = new ParametersInfo(32, 12, 8, 7, 7);
+        makeReport(staff, info);
     }
 
-    public void makeReport(List<StaffMemberInfo> staffMembers, ParametersInfo parametersInfo) {
+    public static void makeReport(List<StaffMemberInfo> staffMembers, ParametersInfo parametersInfo) {
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(fileReport);
+            for (StaffMemberInfo staff : staffMembers) {
+                fileWriter.write(staff.toString());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fileWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static List<StaffMemberInfo> csvParser(String fileName) {
