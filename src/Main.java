@@ -10,18 +10,19 @@ import static java.util.Arrays.asList;
 public class Main {
     private static String filePath = "E:\\Work\\reportTask\\src\\data\\source-data.txt";
     private static String fileReport = "E:\\Work\\reportTask\\src\\data\\report.txt";
+
     public static void main(String[] args) {
         List<StaffMemberInfo> staff = csvParser(filePath);
-        ParametersInfo info = new ParametersInfo(32, 12, 8, 7, 7);
-        makeReport(staff, info);
+        List<String> infoToPrint = printToFile(staff, new ParametersInfo());
+        makeReport(infoToPrint);
     }
 
-    public static void makeReport(List<StaffMemberInfo> staffMembers, ParametersInfo parametersInfo) {
+    public static void makeReport(List<String> staffMembers) {
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter(fileReport);
-            for (StaffMemberInfo staff : staffMembers) {
-                fileWriter.write(staff.toString());
+            for (String staff : staffMembers) {
+                fileWriter.write(staff);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -58,9 +59,40 @@ public class Main {
                 }
             }
         }
-        for (StaffMemberInfo s : staff) {
-            System.out.println(s.toString());
-        }
+
+//        for (StaffMemberInfo s : staff) {
+//            System.out.println(s.toString());
+//        }
         return staff;
+    }
+
+    public static List<String> printToFile(List<StaffMemberInfo> staffMembers, ParametersInfo parametersInfo) {
+        String header = "| Номер  | Дата  | ФИО   |";
+        String separatingline = "--------------------------";
+        String separatingTilde = "~";
+        List<String> info = new ArrayList<>();
+        info.add(header);
+        for (StaffMemberInfo staff : staffMembers) {
+            int countLine = 1;
+            if (staff.getDate().length() > parametersInfo.getDateWidth()) {
+                countLine = countLines(staff.getDate().length(), parametersInfo.getDateWidth());
+            }
+            for (int i = 0; i < countLine; i += 7) {
+                info.add("| " + staff.getNumber() + "  | " + staff.getDate().substring(i) + " | " + staff.getFullName() + " |\n");
+            }
+            info.add(separatingline);
+        }
+        info.add(separatingTilde);
+        return info;
+    }
+
+    public static int countLines(int staffLenght, int parameterLenght) {
+        int countLine = 2;
+        int length = staffLenght - parameterLenght;
+        while (length > parameterLenght) {
+            length = length - parameterLenght;
+            countLine++;
+        }
+        return countLine;
     }
 }

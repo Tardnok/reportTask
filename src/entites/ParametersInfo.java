@@ -1,18 +1,13 @@
 package entites;
 
 public class ParametersInfo {
-    private int pageWidth;
-    private int pageheight;
-    private int numberWidth;
-    private int dateWidth;
-    private int nameWidth;
+    private final int pageWidth = 32;
+    private final int pageheight = 12;
+    private final int numberWidth = 8;
+    private final int dateWidth = 7;
+    private final int nameWidth = 7;
 
-    public ParametersInfo(int pageWidth, int pageheight, int numberWidth, int dateWidth, int nameWidth) {
-        this.pageWidth = pageWidth;
-        this.pageheight = pageheight;
-        this.numberWidth = numberWidth;
-        this.dateWidth = dateWidth;
-        this.nameWidth = nameWidth;
+    public ParametersInfo() {
     }
 
     public int getPageWidth() {
