@@ -81,13 +81,18 @@ public class Main {
             List<String> stringsForName = new ArrayList<>();
             if (staff.getDate().length() > parametersInfo.getDateWidth()) {
                 stringsForDate = returnMassive(staff.getDate(), parametersInfo.getDateWidth());
+            } else {
+                stringsForDate.add(0, staff.getDate());
             }
-            if (staff.getFullName().length() >= parametersInfo.getNameWidth()) {
-                System.out.println(staff.getFullName());
+            if (staff.getFullName().length() > parametersInfo.getNameWidth()) {
                 stringsForName = returnMassive(staff.getFullName(), parametersInfo.getNameWidth());
+            } else {
+                stringsForName.add(0, staff.getFullName());
             }
-            if (staff.getNumber().length() >= parametersInfo.getNumberWidth()) {
-                stringsForNumber = returnMassive(staff.getFullName(), parametersInfo.getNumberWidth());
+            if (staff.getNumber().length() > parametersInfo.getNumberWidth()) {
+                stringsForNumber = returnMassive(staff.getNumber(), parametersInfo.getNumberWidth());
+            } else {
+                stringsForNumber.add(0, staff.getNumber());
             }
             if (stringsForDate.size() > stringsForName.size()) {
                 countLine = stringsForDate.size();
@@ -132,8 +137,8 @@ public class Main {
         int length = field.length();
         while (length > parameterLentgh) {
             length = length - parameterLentgh;
-            arr.add("| " + field.substring(initialIndex, parameterLentgh) + " |");
-            initialIndex = parameterLentgh;
+            arr.add("| " + field.substring(initialIndex, parameterLentgh + initialIndex) + " |");
+            initialIndex =+ parameterLentgh;
         }
         if (length != 0) {
             String str = field.substring(initialIndex);
