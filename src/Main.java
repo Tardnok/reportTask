@@ -133,12 +133,12 @@ public class Main {
         int length = field.length();
         while (length > parameterLentgh) {
             length = length - parameterLentgh;
-            arr.add("| " + field.substring(initialIndex, parameterLentgh + initialIndex) + " |");
+            arr.add(" " + field.substring(initialIndex, parameterLentgh + initialIndex) + " ");
             initialIndex =+ parameterLentgh;
         }
         if (length != 0) {
             String str = field.substring(initialIndex);
-            String lastLine = "| " + str + " |";
+            String lastLine = " " + str + " ";
             int remainderLength = parameterLentgh - str.length();
             if (remainderLength != 0) {
                 while (remainderLength > 0) {
