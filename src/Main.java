@@ -21,20 +21,16 @@ public class Main {
     }
 
     public static void makeReport(List<String> staffMembers) {
-        FileWriter fileWriter = null;
+        PrintWriter fileWriter = null;
         try {
-            fileWriter = new FileWriter(fileReport);
+            fileWriter = new PrintWriter(fileReport);
             for (String staff : staffMembers) {
-                fileWriter.write(staff);
+                fileWriter.println(staff);
             }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            try {
-                fileWriter.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            fileWriter.close();
         }
     }
 
