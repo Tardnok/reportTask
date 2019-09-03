@@ -127,7 +127,7 @@ public class Main {
         while (length > parameterLentgh) {
             length = length - parameterLentgh;
             arr.add(" " + field.substring(initialIndex, parameterLentgh + initialIndex) + " ");
-            initialIndex =+ parameterLentgh;
+            initialIndex = initialIndex + parameterLentgh;
         }
         if (length != 0) {
             String str = field.substring(initialIndex);
