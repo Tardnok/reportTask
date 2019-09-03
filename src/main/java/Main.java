@@ -5,8 +5,8 @@ import java.util.List;
 import static java.util.Arrays.asList;
 
 public class Main {
-    private static String filePath = "E:/Work/reportTask/src/main/resources/source-data.csv";
-    private static String fileReport = "E:/Work/reportTask/src/main/resources/report.txt";
+    private static String filePath = "src/main/resources/source-data.csv";
+    private static String fileReport = "src/main/resources/report.txt";
     private static final String HEADER = "| Номер  | Дата  | ФИО   |";
     private static final String SEPARATING_LINE = "--------------------------";
     private static final String SEPARATING_TILDE = "~";
