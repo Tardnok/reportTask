@@ -1,5 +1,3 @@
-package entites;
-
 public class StaffMemberInfo {
     private String number;
     private String date;
