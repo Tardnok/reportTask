@@ -1,5 +1,3 @@
-package entites;
-
 public class ParametersInfo {
     private final int pageWidth = 32;
     private final int pageheight = 12;
