@@ -13,11 +13,11 @@ public class Main {
 
     public static void main(String[] args) {
         List<StaffMemberInfo> staff = csvParser(filePath);
-        List<String> infoToPrint = printToFile(staff, new ParametersInfo());
-        makeReport(infoToPrint);
+        List<String> infoToPrint = formReport(staff, new ParametersInfo());
+        printToFile(infoToPrint);
     }
 
-    public static void makeReport(List<String> staffMembers) {
+    public static void printToFile(List<String> staffMembers) {
         PrintWriter fileWriter = null;
         try {
             fileWriter = new PrintWriter(fileReport);
@@ -55,14 +55,10 @@ public class Main {
                 }
             }
         }
-
-//        for (StaffMemberInfo s : staff) {
-//            System.out.println(s.toString());
-//        }
         return staff;
     }
 
-    public static List<String> printToFile(List<StaffMemberInfo> staffMembers, ParametersInfo parametersInfo) {
+    public static List<String> formReport(List<StaffMemberInfo> staffMembers, ParametersInfo parametersInfo) {
         List<String> info = new ArrayList<>();
         info.add(HEADER);
         info.add(SEPARATING_LINE);
@@ -73,17 +69,17 @@ public class Main {
             List<String> stringsForDate = new ArrayList<>();
             List<String> stringsForName = new ArrayList<>();
             if (staff.getDate().length() > parametersInfo.getDateWidth()) {
-                stringsForDate = returnMassive(staff.getDate(), parametersInfo.getDateWidth());
+                stringsForDate = divideByLine(staff.getDate(), parametersInfo.getDateWidth());
             } else {
                 stringsForDate.add(0, staff.getDate());
             }
             if (staff.getFullName().length() > parametersInfo.getNameWidth()) {
-                stringsForName = returnMassive(staff.getFullName(), parametersInfo.getNameWidth());
+                stringsForName = divideByLine(staff.getFullName(), parametersInfo.getNameWidth());
             } else {
                 stringsForName.add(0, staff.getFullName());
             }
             if (staff.getNumber().length() > parametersInfo.getNumberWidth()) {
-                stringsForNumber = returnMassive(staff.getNumber(), parametersInfo.getNumberWidth());
+                stringsForNumber = divideByLine(staff.getNumber(), parametersInfo.getNumberWidth());
             } else {
                 stringsForNumber.add(0, staff.getNumber());
             }
@@ -124,7 +120,7 @@ public class Main {
     }
 
 
-    public static List<String> returnMassive(String field, int parameterLentgh) {
+    public static List<String> divideByLine(String field, int parameterLentgh) {
         List<String> arr = new ArrayList<>();
         int initialIndex = 0;
         int length = field.length();
